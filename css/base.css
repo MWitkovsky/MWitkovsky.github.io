@@ -1,3 +1,20 @@
 body {
     padding-top: 70px;
 }
+
+.card{
+    outline-style: solid;
+    outline-width: medium; 
+    margin:0 auto;
+    width: 500px;
+    height: 350px;
+}
+
+.card img{
+    width: 400px;
+    height: 300px;
+}
+
+.card p{
+    padding-top: 10px;
+}
