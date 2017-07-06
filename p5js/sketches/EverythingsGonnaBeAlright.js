@@ -22,7 +22,7 @@ function createAfterimage(inputColor, xPos, yPos){
 
 function preload() {
     song = loadSound('../media/sound/EverythingsGonnaBeAlright.wav');
-    messageFont = loadFont('../media/fonts/28 Days Later.ttf');
+    //  messageFont = loadFont('../media/fonts/28 Days Later.ttf');
 }
 
 function setup() {
@@ -78,7 +78,7 @@ function renderWave(color) {
 function renderText(font, inputColor, x, y){
     noStroke();
     fill(inputColor);
-    textFont(font, 36);
+    //textFont(font, 36);
     text(message, x, y);
     
     var reducedColor = color(red(inputColor)/2,blue(inputColor)/2,green(inputColor)/2,255);
