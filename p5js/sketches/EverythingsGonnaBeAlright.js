@@ -44,7 +44,7 @@ function createCricleWithPivot(inputColor, startX, startY, pivotX, pivotY){
 }
 
 function preload() {
-    song = loadSound('everythingsgonnabealright.wav');
+    song = loadSound('media/sound/EverythingsGonnaBeAlright.wav');
 }
 
 function setup() {
