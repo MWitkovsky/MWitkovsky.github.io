@@ -34,8 +34,8 @@ function preload() {
 }
 
 function setup() {
-    ww = 1024;
-    wh = 720;
+    ww = 1910;
+    wh = 1920;
     hw = ww/2;
     hh = wh/2;
         
