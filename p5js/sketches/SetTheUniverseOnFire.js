@@ -52,6 +52,7 @@ function setup() {
     
     theta = 0;
     
+    colorMode(HSB, 255, 255, 255);
     createCanvas(ww, wh);
     song.loop();
 }
@@ -59,10 +60,14 @@ function setup() {
 function draw() {
     background(0);
     if(millis() > delayTimer){
-        circles.push(createCircle(color(255,255,255,255), 0, 0, 1, 1));
-        circles.push(createCircle(color(255,255,255,255), 0, 0, 1, 1));
-        circles.push(createCircle(color(255,255,255,255), 0, 0, 1, 1));
-        circles.push(createCircle(color(255,255,255,255), 0, 0, 1, 1));
+        circles.push(createCircle(color(50,255,255), 0, 0, 1, 1));
+        circles.push(createCircle(color(100,255,255), 0, 0, 1, 1));
+        circles.push(createCircle(color(150,255,255), 0, 0, 1, 1));
+        circles.push(createCircle(color(200,255,255), 0, 0, 1, 1));
+        circles.push(createCircle(color(50,255,255), 0, 0, 1, 1));
+        circles.push(createCircle(color(100,255,255), 0, 0, 1, 1));
+        circles.push(createCircle(color(150,255,255), 0, 0, 1, 1));
+        circles.push(createCircle(color(200,255,255), 0, 0, 1, 1));
         delayTimer += spawnDelay;
     }
     renderCircles();
@@ -92,13 +97,13 @@ function renderCircles() {
             circles[i].h = lerp(minH, maxH, (-circles[i].y)/-hh);
         
         if(circles[i].x > 0 && circles[i].y > 0)
-            circles[i].color = lerpColor(circles[i].initColor, color(255,0,0,255), Math.max(circles[i].x/hw, circles[i].y/hh))
+            circles[i].color = lerpColor(circles[i].initColor, color(255,255,255), Math.max(circles[i].x/hw, circles[i].y/hh))
         else if(circles[i].x > 0 && circles[i].y < 0)
-            circles[i].color = lerpColor(circles[i].initColor, color(255,0,0,255), Math.max(circles[i].x/hw, circles[i].y/-hh))
+            circles[i].color = lerpColor(circles[i].initColor, color(255,255,255), Math.max(circles[i].x/hw, circles[i].y/-hh))
         else if(circles[i].x < 0 && circles[i].y > 0)
-            circles[i].color = lerpColor(circles[i].initColor, color(255,0,0,255), Math.max(circles[i].x/-hw, circles[i].y/hh))
+            circles[i].color = lerpColor(circles[i].initColor, color(255,255,255), Math.max(circles[i].x/-hw, circles[i].y/hh))
         else
-            circles[i].color = lerpColor(circles[i].initColor, color(255,0,0,255), Math.max(circles[i].x/-hw, circles[i].y/-hh))
+            circles[i].color = lerpColor(circles[i].initColor, color(255,255,255), Math.max(circles[i].x/-hw, circles[i].y/-hh))
         
         
         if(Math.abs(circles[i].x) > hw+200 || Math.abs(circles[i].y) > hh+200)
