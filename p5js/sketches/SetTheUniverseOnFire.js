@@ -3,6 +3,7 @@ var hw, hh; //half width + half height
 var song; //song to play
 
 var circles;
+var circlesToRemove;
 var maxSpeed;
 var spawnDelay;
 var delayTimer;
@@ -16,6 +17,7 @@ var theta;
 
 function createCircle(inputColor, xPos, yPos, w, h){
     var afterimage = {
+        initColor:inputColor,
         color:inputColor,
         x:xPos,
         y:yPos,
@@ -38,8 +40,9 @@ function setup() {
     hh = wh/2;
         
     circles = [];
-    maxSpeed = 10;
-    spawnDelay = 10;
+    circlesToRemove = [];
+    maxSpeed = 20;
+    spawnDelay = 1;
     delayTimer = spawnDelay;
     
     minH = 1;
@@ -56,7 +59,10 @@ function setup() {
 function draw() {
     background(0);
     if(millis() > delayTimer){
-        circles.push(createCircle(color(255,200,100,255), 0, 0, 1, 1));
+        circles.push(createCircle(color(255,255,255,255), 0, 0, 1, 1));
+        circles.push(createCircle(color(255,255,255,255), 0, 0, 1, 1));
+        circles.push(createCircle(color(255,255,255,255), 0, 0, 1, 1));
+        circles.push(createCircle(color(255,255,255,255), 0, 0, 1, 1));
         delayTimer += spawnDelay;
     }
     renderCircles();
@@ -64,11 +70,13 @@ function draw() {
 
 function renderCircles() {
     noStroke();
-    fill(255);
+    
+    push();
+    
     translate(ww/2, wh/2);
     theta += .025;
     rotate(theta);
-    // A simple way to draw the wave with an ellipse at each location
+
     for (var i=0; i<circles.length; i++){
         circles[i].x += circles[i].vx;
         circles[i].y += circles[i].vy;
@@ -83,13 +91,31 @@ function renderCircles() {
         else
             circles[i].h = lerp(minH, maxH, (-circles[i].y)/-hh);
         
-        //circles[i].h += 1;
+        if(circles[i].x > 0 && circles[i].y > 0)
+            circles[i].color = lerpColor(circles[i].initColor, color(255,0,0,255), Math.max(circles[i].x/hw, circles[i].y/hh))
+        else if(circles[i].x > 0 && circles[i].y < 0)
+            circles[i].color = lerpColor(circles[i].initColor, color(255,0,0,255), Math.max(circles[i].x/hw, circles[i].y/-hh))
+        else if(circles[i].x < 0 && circles[i].y > 0)
+            circles[i].color = lerpColor(circles[i].initColor, color(255,0,0,255), Math.max(circles[i].x/-hw, circles[i].y/hh))
+        else
+            circles[i].color = lerpColor(circles[i].initColor, color(255,0,0,255), Math.max(circles[i].x/-hw, circles[i].y/-hh))
+        
+        
+        if(Math.abs(circles[i].x) > hw+200 || Math.abs(circles[i].y) > hh+200)
+            circlesToRemove.push(circles[i]);
+        
+        fill(circles[i].color);
         ellipse(circles[i].x, circles[i].y, circles[i].w, circles[i].h);
     }
     
+    removeCirclesMarkedForDeletion();
     
+    pop();
 }
 
-function lerp(a, b, p){
-    return a+p*(b-a);
+function removeCirclesMarkedForDeletion(){
+    for (var i=0; i<circlesToRemove.length; i++){
+        circles.splice(circles.indexOf(circlesToRemove[i]),1);
+    }
+    circlesToRemove = [];
 }
