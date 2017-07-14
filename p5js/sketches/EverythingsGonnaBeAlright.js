@@ -23,6 +23,7 @@ var afterimageSpawnCounter = afterimageSpawnRate;
 var analyzer;
 var circles = [];
 var theta = 0;
+
 // Creates an afterimage object for saving its color and position properties
 function createAfterimage(inputColor, xPos, yPos){
     var afterimage = {
