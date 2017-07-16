@@ -14,10 +14,10 @@ var maxH;
 var maxW;
 
 var theta;
-        var max;
+var max;
 
 function createCircle(inputColor, xPos, yPos, w, h){
-    var afterimage = {
+    var circle = {
         initColor:inputColor,
         color:inputColor,
         x:xPos,
@@ -27,7 +27,7 @@ function createCircle(inputColor, xPos, yPos, w, h){
         vx: maxSpeed-(Math.random()*maxSpeed*2),
         vy: maxSpeed-(Math.random()*maxSpeed*2),
     };
-    return afterimage;
+    return circle;
 }
 
 function preload() {
@@ -42,7 +42,7 @@ function setup() {
         
     circles = [];
     circlesToRemove = [];
-    maxSpeed = 20;
+    maxSpeed = 15;
     spawnDelay = 1;
     delayTimer = spawnDelay;
     
