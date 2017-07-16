@@ -14,6 +14,7 @@ var maxH;
 var maxW;
 
 var theta;
+        var max;
 
 function createCircle(inputColor, xPos, yPos, w, h){
     var afterimage = {
@@ -86,27 +87,20 @@ function renderCircles() {
         circles[i].x += circles[i].vx;
         circles[i].y += circles[i].vy;
         
-        if(circles[i].vx >= 0)  
-            circles[i].w = lerp(minW, maxW, circles[i].x/hw);
-        else
-            circles[i].w = lerp(minW, maxW, (-circles[i].x)/-hw);
-        
-        if (circles[i].vy >= 0)
-            circles[i].h = lerp(minH, maxH, circles[i].y/hh);
-        else
-            circles[i].h = lerp(minH, maxH, (-circles[i].y)/-hh);
-        
         if(circles[i].x > 0 && circles[i].y > 0)
-            circles[i].color = lerpColor(circles[i].initColor, color(255,255,255), Math.max(circles[i].x/hw, circles[i].y/hh))
+            max = Math.max(circles[i].x/hw, circles[i].y/hh)
         else if(circles[i].x > 0 && circles[i].y < 0)
-            circles[i].color = lerpColor(circles[i].initColor, color(255,255,255), Math.max(circles[i].x/hw, circles[i].y/-hh))
+            max = Math.max(circles[i].x/hw, circles[i].y/-hh)
         else if(circles[i].x < 0 && circles[i].y > 0)
-            circles[i].color = lerpColor(circles[i].initColor, color(255,255,255), Math.max(circles[i].x/-hw, circles[i].y/hh))
+            max = Math.max(circles[i].x/-hw, circles[i].y/hh)     
         else
-            circles[i].color = lerpColor(circles[i].initColor, color(255,255,255), Math.max(circles[i].x/-hw, circles[i].y/-hh))
+            max = Math.max(circles[i].x/-hw, circles[i].y/-hh)
         
+        circles[i].w = lerp(minW, maxW, max)
+        circles[i].h = lerp(minH, maxH, max)
+        circles[i].color = lerpColor(circles[i].initColor, color(255,255,255), max)
         
-        if(Math.abs(circles[i].x) > hw+200 || Math.abs(circles[i].y) > hh+200)
+        if(Math.abs(circles[i].x) > hw+400 || Math.abs(circles[i].y) > hh+400)
             circlesToRemove.push(circles[i]);
         
         fill(circles[i].color);
