@@ -26,6 +26,9 @@ var meteorScale;
 var meteorXOffset;
 var meteorYOffset;
 
+var wanderXMax;
+var wanderYMax;
+
 function createCircle(inputColor, xPos, yPos, size){
     var circle = {
         initColor:inputColor,
@@ -45,6 +48,10 @@ function createSprite(path, xPos, yPos, scale){
         img: loadImage(path),
         x:xPos,
         y:yPos,
+        wanderX:0,
+        wanderY:0,
+        toWanderX: Math.random() > 0.5 ? true : false,
+        toWanderY: Math.random() > 0.5 ? true : false,
         scale:scale
     };
     return sprite;
@@ -105,6 +112,9 @@ function setup() {
     meteorXOffset = -7;
     meteorYOffset = 30;
     
+    wanderXMax = 20;
+    wanderYMax = 40;
+    
     createCanvas(ww, wh);
     song.loop();
 }
@@ -114,10 +124,9 @@ function windowResized() {
     wh = $(window).height()-50;
     hw = ww/2;
     hh = wh/2;
-        
-    
     
     resizeCanvas(ww, wh);
+    
     fighter.x = hw+100;
     fighter.y = hh;
     redMage.x = hw+25;
@@ -134,7 +143,7 @@ function draw() {
     if(millis() > delayTimer){
         for(var i=0; i<4; i++){
             circles.push(createCircle(color(255,255,255), 
-                                      ww, 
+                                      ww+100, 
                                       randomInt(0, wh), 
                                       randomInt(minStarSize, maxStarSize)));
         }
@@ -144,8 +153,8 @@ function draw() {
     renderCircles();
     renderSprite(redMage);
     renderSprite(whiteMage);
-    renderSprite(blackMage);
     renderSprite(fighter);
+    renderSprite(blackMage);
 }
 
 function renderCircles() {
@@ -166,14 +175,36 @@ function renderCircles() {
 }
 
 function renderSprite(sprite){
+    if(sprite.toWanderX){
+        sprite.wanderX+=Math.random()/4;
+        if(sprite.wanderX >= wanderXMax)
+            sprite.toWanderX = false;
+    }
+    else{
+        sprite.wanderX-=Math.random()/4;
+        if(sprite.wanderX <= -wanderXMax)
+            sprite.toWanderX = true;
+    }
+    
+    if(sprite.toWanderY){
+        sprite.wanderY+=Math.random()/2;
+        if(sprite.wanderY >= wanderYMax)
+            sprite.toWanderY = false;
+    }
+    else{
+        sprite.wanderY-=Math.random()/2;
+        if(sprite.wanderY <= -wanderXMax)
+            sprite.toWanderY = true;
+    }
+    
     push();
     translate(sprite.x + meteorXOffset, sprite.y + meteorYOffset);
     scale(meteorScale);
-    image(meteor, 0, 0);
+    image(meteor, sprite.wanderX*sprite.scale/meteorScale, sprite.wanderY*sprite.scale/meteorScale);
     pop();
     push();
     translate(sprite.x, sprite.y);
     scale(sprite.scale);
-    image(sprite.img, 0, 0);
+    image(sprite.img, sprite.wanderX, sprite.wanderY);
     pop();
 }
