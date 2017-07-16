@@ -1,3 +1,6 @@
+//Author: Michael Witkovsky
+//Date: 7/13/2017 - 7/16/2017
+
 var ww, wh; //window width and window height
 var hw, hh; //half width + half height
 var song; //song to play
@@ -30,6 +33,14 @@ function createCircle(inputColor, xPos, yPos, w, h){
     };
     return circle;
 }
+
+function removeCirclesMarkedForDeletion(){
+    for (var i=0; i<circlesToRemove.length; i++){
+        circles.splice(circles.indexOf(circlesToRemove[i]),1);
+    }
+    circlesToRemove = [];
+}
+
 
 function preload() {
     song = loadSound('../media/sound/SetTheUniverseOnFireLoop.wav');
@@ -129,11 +140,4 @@ function renderCircles() {
     removeCirclesMarkedForDeletion();
     
     pop();
-}
-
-function removeCirclesMarkedForDeletion(){
-    for (var i=0; i<circlesToRemove.length; i++){
-        circles.splice(circles.indexOf(circlesToRemove[i]),1);
-    }
-    circlesToRemove = [];
 }
