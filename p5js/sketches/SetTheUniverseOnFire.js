@@ -14,6 +14,7 @@ var maxH;
 var maxW;
 
 var theta;
+var rotationRate;
 var max;
 
 function createCircle(inputColor, xPos, yPos, w, h){
@@ -35,10 +36,15 @@ function preload() {
 }
 
 function setup() {
-    ww = 1910;
-    wh = 1920;
-    hw = ww/2;
-    hh = wh/2;
+    ww = $(window).width();
+    wh = $(window).height()-50;
+    
+    if(Math.max(ww,wh) == ww)
+        hw = ww/2;
+    else
+        hw = wh/2;
+    
+    hh = hw;
         
     circles = [];
     circlesToRemove = [];
@@ -52,23 +58,36 @@ function setup() {
     maxW = 20;
     
     theta = 0;
+    rotationRate = 0.025;
     
     colorMode(HSB, 255, 255, 255);
     createCanvas(ww, wh);
     song.loop();
 }
 
+function windowResized() {
+    ww = $(window).width();
+    wh = $(window).height()-50;
+    
+    if(Math.max(ww,wh) == ww)
+        hw = ww/2;
+    else
+        hw = wh/2;
+    
+    hh = hw;
+        
+    resizeCanvas(ww, wh);
+}
+
 function draw() {
     background(0);
     if(millis() > delayTimer){
-        circles.push(createCircle(color(50,255,255), 0, 0, 1, 1));
-        circles.push(createCircle(color(100,255,255), 0, 0, 1, 1));
-        circles.push(createCircle(color(150,255,255), 0, 0, 1, 1));
-        circles.push(createCircle(color(200,255,255), 0, 0, 1, 1));
-        circles.push(createCircle(color(50,255,255), 0, 0, 1, 1));
-        circles.push(createCircle(color(100,255,255), 0, 0, 1, 1));
-        circles.push(createCircle(color(150,255,255), 0, 0, 1, 1));
-        circles.push(createCircle(color(200,255,255), 0, 0, 1, 1));
+        for(var i=0; i<2; i++){
+            circles.push(createCircle(color(50,255,255), 0, 0, 1, 1));
+            circles.push(createCircle(color(100,255,255), 0, 0, 1, 1));
+            circles.push(createCircle(color(150,255,255), 0, 0, 1, 1));
+            circles.push(createCircle(color(200,255,255), 0, 0, 1, 1));
+        }
         delayTimer += spawnDelay;
     }
     renderCircles();
@@ -80,7 +99,7 @@ function renderCircles() {
     push();
     
     translate(ww/2, wh/2);
-    theta += .025;
+    theta += rotationRate;
     rotate(theta);
 
     for (var i=0; i<circles.length; i++){
@@ -88,17 +107,17 @@ function renderCircles() {
         circles[i].y += circles[i].vy;
         
         if(circles[i].x > 0 && circles[i].y > 0)
-            max = Math.max(circles[i].x/hw, circles[i].y/hh)
+            max = Math.max(circles[i].x/hw, circles[i].y/hh);
         else if(circles[i].x > 0 && circles[i].y < 0)
-            max = Math.max(circles[i].x/hw, circles[i].y/-hh)
+            max = Math.max(circles[i].x/hw, circles[i].y/-hh);
         else if(circles[i].x < 0 && circles[i].y > 0)
-            max = Math.max(circles[i].x/-hw, circles[i].y/hh)     
+            max = Math.max(circles[i].x/-hw, circles[i].y/hh);  
         else
-            max = Math.max(circles[i].x/-hw, circles[i].y/-hh)
+            max = Math.max(circles[i].x/-hw, circles[i].y/-hh);
         
-        circles[i].w = lerp(minW, maxW, max)
-        circles[i].h = lerp(minH, maxH, max)
-        circles[i].color = lerpColor(circles[i].initColor, color(255,255,255), max)
+        circles[i].w = lerp(minW, maxW, max);
+        circles[i].h = lerp(minH, maxH, max);
+        circles[i].color = lerpColor(circles[i].initColor, color(255,255,255), max);
         
         if(Math.abs(circles[i].x) > hw+400 || Math.abs(circles[i].y) > hh+400)
             circlesToRemove.push(circles[i]);
