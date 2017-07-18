@@ -94,7 +94,7 @@ function preload() {
     game.stage.backgroundColor = '#85b5e1'; //Sets a default background color. We will cover it up later but leave this for now.
 
     game.load.image('background', 'https://upload.wikimedia.org/wikipedia/commons/6/65/Over_the_clouds.jpg'); //Loads in an image from that IRL and changes its name to "background"
-    game.load.image('player', 'blackmage.png');
+    game.load.image('player', '../../media/images/RiseOfTheChaosWizards/blackmage.png');
     game.load.image('platform', 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Solid_black.svg/100px-Solid_black.svg.png');
     game.load.image('hazard', 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/Red.svg/100px-Red.svg.png');
     game.load.image('goal', 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Solid_green.svg/100px-Solid_green.svg.png');
