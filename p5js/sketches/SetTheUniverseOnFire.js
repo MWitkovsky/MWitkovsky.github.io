@@ -43,7 +43,7 @@ function removeCirclesMarkedForDeletion(){
 
 
 function preload() {
-    song = loadSound('../../media/sound/SetTheUniverseOnFireLoop.wav');
+    song = loadSound('/media/sound/SetTheUniverseOnFireLoop.wav');
 }
 
 function setup() {

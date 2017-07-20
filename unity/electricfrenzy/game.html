@@ -1,18 +1,20 @@
 <!DOCTYPE html>
 <html lang="en-us">
-  <head>
+
+<head>
     <title>Electric Frenzy</title>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <link rel="shortcut icon" href="TemplateData/favicon.ico">
     <link rel="stylesheet" href="TemplateData/style.css">
-    <script src="../lib/jquery.min.js"></script>
+    <script src="/lib/jquery.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="/css/base.css">
     <script src="TemplateData/UnityProgress.js"></script>
     <script src="Build/UnityLoader.js"></script>
+    <script src="/lib/navbarGenerator.js"></script>
     <script>
         var gameInstance = UnityLoader.instantiate("gameContainer", "Build/WebGL.json", {
             onProgress: UnityProgress
@@ -31,14 +33,10 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-                <a class="navbar-brand" href="../../index.html">MWitkovsky</a>
+                <a class="navbar-brand" href="/">MWitkovsky</a>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li><a href="../../index.html">Home</a></li>
-                    <li><a href="../../p5js/p5jsindex.html">P5JS</a></li>
-                    <li><a href="../../phaser/phaserindex.html">Phaser</a></li>
-                    <li class="active"><a href="../unityindex.html">Unity</a></li>
+                <ul id="urls" class="nav navbar-nav">
                 </ul>
             </div>
         </div>
@@ -48,4 +46,5 @@
         <div id="gameContainer" style="width: 960px; height: 600px"></div>
     </div>
 </body>
+
 </html>
