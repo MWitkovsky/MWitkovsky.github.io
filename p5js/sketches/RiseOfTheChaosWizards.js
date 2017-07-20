@@ -90,24 +90,24 @@ function setup() {
     starVX = 20;
     maxStarVY = 2;
     
-    fighter = createSprite("../media/images/RiseOfTheChaosWizards/fighter.png",
+    fighter = createSprite("../../media/images/RiseOfTheChaosWizards/fighter.png",
               hw+100,
               hh,
               2);
-    redMage = createSprite("../media/images/RiseOfTheChaosWizards/redmage.png",
+    redMage = createSprite("../../media/images/RiseOfTheChaosWizards/redmage.png",
               hw+25,
               hh-75,
               2);
-    blackMage = createSprite("../media/images/RiseOfTheChaosWizards/blackmage.png",
+    blackMage = createSprite("../../media/images/RiseOfTheChaosWizards/blackmage.png",
               hw-25,
               hh+25,
               2);
-    whiteMage = createSprite("../media/images/RiseOfTheChaosWizards/whitemage.png",
+    whiteMage = createSprite("../../media/images/RiseOfTheChaosWizards/whitemage.png",
               hw-100,
               hh-50,
               2);
     
-    meteor = loadImage("../media/images/RiseOfTheChaosWizards/meteor.png");
+    meteor = loadImage("../../media/images/RiseOfTheChaosWizards/meteor.png");
     meteorScale = 0.25;
     meteorXOffset = -7;
     meteorYOffset = 30;

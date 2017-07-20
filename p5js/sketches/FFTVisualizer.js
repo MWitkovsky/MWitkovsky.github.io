@@ -10,7 +10,7 @@ var ww, wh; //window width and window height
 var heightCoeff;
 
 function preload() {
-    song = loadSound('../media/sound/DeathOfTheWhizzler.mp3');
+    song = loadSound('../../media/sound/DeathOfTheWhizzler.mp3');
 }
 
 function setup() {
