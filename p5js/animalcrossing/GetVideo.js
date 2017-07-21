@@ -1,4 +1,4 @@
-var autoplayArg = "?autoplay=1&loop=1&playlist=";
+var autoplayArg = "?start=0?autoplay=1&loop=1&playlist=";
 var baseUrl = "https://www.youtube.com/embed/"
 var urls = {
     0: "As6_i8RoKP0",
