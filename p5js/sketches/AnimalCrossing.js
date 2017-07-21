@@ -3,8 +3,13 @@
 
 var ww, wh; //window width and window height
 var hw, hh; //half width + half height
+var ws, hs; //width scale + height scale
 
-function preload() {}
+var grass;
+
+function preload() {
+    grass = loadImage("/media/images/AnimalCrossing/grass.png");
+}
 
 function setup() {
     ww = $(window).width();
@@ -16,6 +21,9 @@ function setup() {
         hw = wh / 2;
 
     hh = hw;
+    
+    ws = 0.1;
+    hs = 0.1;
 
     createCanvas(ww, wh);
 }
@@ -35,5 +43,14 @@ function windowResized() {
 }
 
 function draw() {
-    background(0);
+    scale(ws, hs);
+    drawBackground();
+}
+
+function drawBackground(){
+    for(var i=0; i<wh/hs; i+=1024){
+        for(var j=0; j<ww/ws; j+=1024){
+            image(grass, j, i);
+        }
+    }
 }
