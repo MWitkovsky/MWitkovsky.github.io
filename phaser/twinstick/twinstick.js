@@ -6,11 +6,23 @@ var enemies;
 var maxEnemies;
 var currentEnemies;
 
+var UI;
+
+var counter;
+var score;
+var scoreText;
+
+var healthBar;
+var healthWidth;
+var cropRectangle;
+
 var cursors;
 var upBotton;
 var downButton;
 var leftButton;
 var rightButton;
+
+var gameActive;
 
 //Game Init
 var game = new Phaser.Game(800, 600, Phaser.CANVAS, "game", {
@@ -24,6 +36,7 @@ function loadImages() {
     game.load.image("player", "/media/images/RiseOfTheChaosWizards/redmage.png");
     game.load.image("fireball", "/media/images/fireball.png");
     game.load.image("enemy", "/media/images/RiseOfTheChaosWizards/blackmage.png");
+    game.load.image("healthbar", "/media/images/phaser/healthbar1.png");
 }
 
 function initSprites() {
@@ -32,6 +45,20 @@ function initSprites() {
     player.scale.setTo(2, 2);
 
     weapon = game.add.weapon(30, "fireball");
+    
+    counter = 0;
+    score = 0;
+    scoreText = game.add.text(16, 16, "Score: 0", {fontSize: "32px",
+                                                  fill: "#000000"});
+    
+    healthBar = game.add.sprite(-35, -30, "healthbar");
+    healthWidth = healthBar.width;
+    healthBar.scale.setTo(.25, .25);
+    healthBar.cropEnabled = true;
+    
+    player.addChild(healthBar);
+    
+    cropRectangle = new Phaser.Rectangle(0, 0, 0, 0);
 }
 
 function initPhysics() {
@@ -57,11 +84,18 @@ function initInput() {
 }
 
 function initGameSettings() {
+    gameActive = true;
+    
+    player.health = 100;
+    
     maxEnemies = 10;
     currentEnemies = 0;
 
     enemies = game.add.group();
     enemies.enableBody = true;
+    
+    UI = game.add.group();
+    UI.add(scoreText);
 }
 
 function spawnEnemies() {
@@ -89,13 +123,30 @@ function killEnemy(bullet, enemy) {
     bullet.kill();
     enemy.kill();
     --currentEnemies;
+    ++score;
+    updateScore();
+}
+
+function playerEnemyCollision(player, enemy){
+    enemy.destroy();
+    --currentEnemies;
+    player.setHealth(player.health-5);
+    cropRectangle.setTo(0, 0, ((player.health/player.maxHealth)*healthWidth), 100);
+    healthBar.crop(cropRectangle);
+    healthBar.updateCrop();
+    if(player.health < 1){
+        gameOver();
+    }
 }
 
 function handleCollisions() {
     game.physics.arcade.overlap(weapon.bullets, enemies, killEnemy);
+    game.physics.arcade.overlap(player, enemies, playerEnemyCollision);
 }
 
 function handleInput() {
+    player.rotation = game.physics.arcade.angleToPointer(player);
+    
     if (game.input.activePointer.isDown)
         weapon.fire();
 
@@ -112,6 +163,15 @@ function handleInput() {
         player.body.velocity.x = 150;
 }
 
+function updateScore(){
+    scoreText.text = "Score: " + score;
+}
+
+function gameOver(){
+    scoreText.text = "GAME OVER";
+    gameActive = false;
+}
+
 //Phaser functions
 function preload() {
     loadImages();
@@ -126,10 +186,10 @@ function create() {
 }
 
 function update() {
-    player.rotation = game.physics.arcade.angleToPointer(player);
-
     handleSpawns();
     handleAI();
-    handleCollisions();
-    handleInput();
+    if(gameActive){
+        handleCollisions();
+        handleInput(); 
+    }
 }
