@@ -21,6 +21,9 @@ var upBotton;
 var downButton;
 var leftButton;
 var rightButton;
+var resetButton;
+
+var powerupGroup;
 
 var gameActive;
 
@@ -37,6 +40,7 @@ function loadImages() {
     game.load.image("fireball", "/media/images/fireball.png");
     game.load.image("enemy", "/media/images/RiseOfTheChaosWizards/blackmage.png");
     game.load.image("healthbar", "/media/images/phaser/healthbar1.png");
+    game.load.image("gem", "/media/images/phaser/gem.png");
 }
 
 function initSprites() {
@@ -49,15 +53,13 @@ function initSprites() {
     counter = 0;
     score = 0;
     scoreText = game.add.text(16, 16, "Score: 0", {fontSize: "32px",
-                                                  fill: "#000000"});
+                                                  fill: "#ffffff"});
     
     healthBar = game.add.sprite(-35, -30, "healthbar");
     healthWidth = healthBar.width;
     healthBar.scale.setTo(.25, .25);
     healthBar.cropEnabled = true;
-    
     player.addChild(healthBar);
-    
     cropRectangle = new Phaser.Rectangle(0, 0, 0, 0);
 }
 
@@ -81,6 +83,7 @@ function initInput() {
     downButton = game.input.keyboard.addKey(Phaser.Keyboard.S);
     leftButton = game.input.keyboard.addKey(Phaser.Keyboard.A);
     rightButton = game.input.keyboard.addKey(Phaser.Keyboard.D);
+    resetButton = game.input.keyboard.addKey(Phaser.Keyboard.R);
 }
 
 function initGameSettings() {
@@ -90,6 +93,9 @@ function initGameSettings() {
     
     maxEnemies = 10;
     currentEnemies = 0;
+    
+    powerupGroup = game.add.group();
+    powerupGroup.enableBody = true;
 
     enemies = game.add.group();
     enemies.enableBody = true;
@@ -100,7 +106,16 @@ function initGameSettings() {
 
 function spawnEnemies() {
     for (i = currentEnemies; i < maxEnemies; i++) {
-        var enemy = enemies.create(game.world.randomX, 0, "enemy");
+        let enemy = undefined;
+        let num = Math.random();
+        if(num < 0.25)
+            enemy = enemies.create(game.world.randomX, 0, "enemy");
+        else if (num < 0.5)
+            enemy = enemies.create(game.world.randomX, game.world.height, "enemy");
+        else if (num < 0.75)
+            enemy = enemies.create(0, game.world.randomY, "enemy");
+        else
+            enemy = enemies.create(game.world.width, game.world.randomY, "enemy");
         enemy.scale.setTo(2, 2);
         enemy.anchor.set(0.5);
         ++currentEnemies;
@@ -125,12 +140,13 @@ function killEnemy(bullet, enemy) {
     --currentEnemies;
     ++score;
     updateScore();
+    
+    if(score%10 === 0)
+        spawnPowerup();
 }
 
-function playerEnemyCollision(player, enemy){
-    enemy.destroy();
-    --currentEnemies;
-    player.setHealth(player.health-5);
+function updateHealth(damage){
+    player.setHealth(player.health-damage);
     cropRectangle.setTo(0, 0, ((player.health/player.maxHealth)*healthWidth), 100);
     healthBar.crop(cropRectangle);
     healthBar.updateCrop();
@@ -139,9 +155,23 @@ function playerEnemyCollision(player, enemy){
     }
 }
 
+function playerEnemyCollision(player, enemy){
+    enemy.destroy();
+    --currentEnemies;
+    updateHealth(5);
+}
+
+function playerPowerupCollision(player, powerup){
+    powerup.destroy();
+    updateHealth(-5);
+    if (player.health > 100)
+        player.health = 100;
+}
+
 function handleCollisions() {
     game.physics.arcade.overlap(weapon.bullets, enemies, killEnemy);
     game.physics.arcade.overlap(player, enemies, playerEnemyCollision);
+    game.physics.arcade.overlap(player, powerupGroup, playerPowerupCollision);
 }
 
 function handleInput() {
@@ -163,6 +193,11 @@ function handleInput() {
         player.body.velocity.x = 150;
 }
 
+function spawnPowerup(){
+    let powerup = powerupGroup.create(game.world.randomX, game.world.randomY, "gem");
+    powerup.scale.setTo(2, 2);
+}
+
 function updateScore(){
     scoreText.text = "Score: " + score;
 }
@@ -170,6 +205,22 @@ function updateScore(){
 function gameOver(){
     scoreText.text = "GAME OVER";
     gameActive = false;
+    player.kill();
+}
+
+function resetGame(){
+    gameActive = true;
+    enemies.removeAll();
+    powerupGroup.removeAll();
+    maxEnemies = 10;
+    currentEnemies = 0;
+    player.reset(game.width/2, game.height/2);
+    player.health = 100;
+    cropRectangle.setTo(0, 0, ((player.health/player.maxHealth)*healthWidth), 100);
+    healthBar.crop(cropRectangle);
+    healthBar.updateCrop();
+    score = 0;
+    updateScore();
 }
 
 //Phaser functions
@@ -178,7 +229,7 @@ function preload() {
 }
 
 function create() {
-    game.stage.backgroundColor = "#ffffff";
+    game.stage.backgroundColor = "#000000";
     initSprites();
     initPhysics();
     initInput();
@@ -192,4 +243,11 @@ function update() {
         handleCollisions();
         handleInput(); 
     }
+    else{
+        player.body.velocity.x = 0;
+        player.body.velocity.y = 0;
+    }
+    
+    if (resetButton.isDown)
+        resetGame();
 }
