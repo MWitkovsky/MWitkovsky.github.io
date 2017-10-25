@@ -13,10 +13,14 @@ var radius;
 var numCircles;
 var dt;
 
-var states = ["shuffling"];
-var state = states[0];
+var states = {
+    idle: 0,
+    shuffling: 1,
+}
+var state = states.idle;
 
 var shuffleIndex;
+var k, l, temp, newK;
 
 function print(m){
     console.log(m);
@@ -39,12 +43,20 @@ function shuffleArray(a, i) {
     x = a[i];
     a[i] = a[j];
     a[j] = x;
+    
+    --shuffleIndex;
 }
 
 function setState(desiredState){
     state = desiredState;
-    if (state === states[0]){
+    if (state === states.shuffling){
         shuffleIndex = circles.length-1;
+    }
+    else if (state === states.insertionSort){
+        k = -1;
+        l = 0;
+        temp = 0;
+        newK = true;
     }
 }
 
@@ -65,7 +77,7 @@ function setup() {
     circles = [];
     delayTimer = stepDelay;
     
-    numCircles = 720;
+    numCircles = 360;
     colorMode(HSB, numCircles, 1, 1);
     
     radius = numCircles/2;
@@ -75,8 +87,9 @@ function setup() {
         t += dt;
         circles.push(createCircle(i, radius, t, 3, 3));
     }
-    setState("shuffling");
+    setState(states.shuffling);
     createCanvas(ww, wh);
+    frameRate(500);
 }
 
 function windowResized() {
@@ -93,16 +106,28 @@ function windowResized() {
     resizeCanvas(ww, wh);
 }
 
-function draw() {
-    if (state == states[0]){
-        background(0);
+function drawFunc(){
+    if (state === states.shuffling){
         shuffleArray(circles, shuffleIndex);
-        --shuffleIndex;
-        renderCircles();
         
         if(shuffleIndex === 0){
-            setState("idle");
+            setState(states.insertionSort);
         }
+    }
+    else if (state === states.insertionSort){
+        insertionSort();
+        
+        if(k >= circles.length-1){
+            setState(states.shuffling);
+        }
+    }
+}
+
+function draw() {
+    if (state !== states.idle){
+        background(0);
+        drawFunc();
+        renderCircles();
     }
 }
 
@@ -131,4 +156,42 @@ function renderCircles() {
     }
     
     pop();
+}
+
+//SORTS
+function insertionSort(){
+    if (newK){
+        ++k;
+        temp = circles[k];
+        l = k-1;
+        
+        newK = false;
+    }
+    
+    if (l >= 0 && circles[l].hue > temp.hue){
+        circles[l+1] = circles[l];
+        --l;
+    }
+    else{
+        circles[l+1] = temp;
+        newK = true;
+    }
+}
+
+//SORTS
+function insertionSort2(){
+    if (newK){
+        ++k;
+        temp = circles[k];
+        l = k-1;
+        
+        newK = false;
+    }
+    
+    while (l >= 0 && circles[l].hue > temp.hue){
+        circles[l+1] = circles[l];
+        --l;
+    }
+    circles[l+1] = temp;
+    newK = true;
 }
