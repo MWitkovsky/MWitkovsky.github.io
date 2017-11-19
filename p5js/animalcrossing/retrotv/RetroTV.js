@@ -1,5 +1,5 @@
 //Author: Michael Witkovsky
-//Date: 7/20/2017
+//Date: 11/18/2017
 
 var ww, wh; //window width and window height
 var hw, hh; //half width + half height
