@@ -38,7 +38,7 @@ function createCircle(inputHue, inputRadius, inputTheta, w, h){
 }
 
 function shuffleArray(a, i) {
-    let j, x;
+    var j, x;
     j = Math.floor(Math.random() * (i + 1));
     x = a[i];
     a[i] = a[j];
@@ -82,8 +82,8 @@ function setup() {
     
     radius = numCircles/2;
     dt = (3.14*2)/numCircles;
-    let t = 0;
-    for (let i=0; i<numCircles; i++){
+    var t = 0;
+    for (var i=0; i<numCircles; i++){
         t += dt;
         circles.push(createCircle(i, radius, t, 3, 3));
     }
@@ -145,7 +145,7 @@ function renderCircles() {
     
     translate(ww/2, wh/2);
 
-    let t=0;
+    var t=0;
     for (var i=0; i<circles.length; i++){
         fill(color(circles[i].hue, 255, 255));
         t += dt;

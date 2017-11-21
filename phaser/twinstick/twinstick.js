@@ -106,8 +106,8 @@ function initGameSettings() {
 
 function spawnEnemies() {
     for (i = currentEnemies; i < maxEnemies; i++) {
-        let enemy = undefined;
-        let num = Math.random();
+        var enemy = undefined;
+        var num = Math.random();
         if(num < 0.25)
             enemy = enemies.create(game.world.randomX, 0, "enemy");
         else if (num < 0.5)
@@ -194,7 +194,7 @@ function handleInput() {
 }
 
 function spawnPowerup(){
-    let powerup = powerupGroup.create(game.world.randomX, game.world.randomY, "gem");
+    var powerup = powerupGroup.create(game.world.randomX, game.world.randomY, "gem");
     powerup.scale.setTo(2, 2);
 }
 

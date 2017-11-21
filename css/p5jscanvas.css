@@ -10,3 +10,9 @@ body {
     justify-content: center;
     align-items: center;
 }
+
+.retro_img {
+    position: absolute;
+    width: 100%;
+    height: auto;
+}

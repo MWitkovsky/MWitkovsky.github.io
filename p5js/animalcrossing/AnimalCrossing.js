@@ -14,7 +14,7 @@ var tileFactor;
 var webGL;
 
 function checkForWebGL() {
-    let gl = null;
+    var gl = null;
     
     try {
         gl = canvas.getContext("webgl");
@@ -31,6 +31,8 @@ function checkForWebGL() {
             webGL = false;
         }
     }
+    
+    webGL=false;
 }
 
 function preload() {
