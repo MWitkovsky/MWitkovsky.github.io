@@ -123,7 +123,6 @@ function draw() {
     renderShip();
     renderFrontCoins();
     removeCoinsMarkedForDeletion();
-    console.log(coins.length);
 }
 
 
