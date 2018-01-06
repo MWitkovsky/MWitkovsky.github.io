@@ -50,7 +50,7 @@ function setup() {
         
     coins = [];
     coinsToRemove = [];
-    maxSpeed = 15;
+    maxSpeed = 20;
     spawnDelay = 1;
     delayTimer = spawnDelay;
     originalWidth = 68;
