@@ -32,8 +32,8 @@ function createCoin(xPos, yPos, vel){
 
 function preload() {
     song = loadSound('/media/sound/gasgasgas.wav');
-    ship = loadImage("/media/images/DogeCoin/rocket.png");
-    coin = loadImage("/media/images/DogeCoin/dogecoin.png");
+    ship = loadImage("/media/images/dogecoin/rocket.png");
+    coin = loadImage("/media/images/dogecoin/dogecoin.png");
 }
 
 function setup() {
