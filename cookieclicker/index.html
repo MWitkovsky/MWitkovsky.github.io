@@ -1,0 +1,20 @@
+<html>
+    <head>
+        <title>Cookie Clicker</title>
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+
+    <body>
+        <div class="text-center cookie-div">
+            <img width=300 src="img/cookie.png" onclick="cookieClicked(this)"/>
+        </div>
+        
+        <div class="text-center">
+            Cookie Count: <span id="cookie-display">0</span>
+            <hr>
+            Grannies: <span id="granny-display">0</span> <button onclick="buyGranny()">+1 (<span id="granny-price">10</span> Cookies)</button>
+        </div>
+        
+        <script src="js/cookieclicker.js"></script>
+    </body>
+</html>

@@ -1,0 +1,11 @@
+.cookie-div{
+    height: 350px;
+}
+
+.cookie-div img{
+    cursor: pointer;
+}
+
+.text-center{
+    text-align: center;
+}
