@@ -36,11 +36,11 @@ var game = new Phaser.Game(800, 600, Phaser.CANVAS, "game", {
 
 //Helper functions
 function loadImages() {
-    game.load.image("player", "/media/images/RiseOfTheChaosWizards/redmage.png");
-    game.load.image("fireball", "/media/images/fireball.png");
-    game.load.image("enemy", "/media/images/RiseOfTheChaosWizards/blackmage.png");
-    game.load.image("healthbar", "/media/images/phaser/healthbar1.png");
-    game.load.image("gem", "/media/images/phaser/gem.png");
+    game.load.image("player", "/static/media/images/RiseOfTheChaosWizards/redmage.png");
+    game.load.image("fireball", "/static/media/images/fireball.png");
+    game.load.image("enemy", "/static/media/images/RiseOfTheChaosWizards/blackmage.png");
+    game.load.image("healthbar", "/static/media/images/phaser/healthbar1.png");
+    game.load.image("gem", "/static/media/images/phaser/gem.png");
 }
 
 function initSprites() {

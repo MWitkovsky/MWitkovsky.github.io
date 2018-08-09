@@ -1,6 +1,5 @@
 $(document).ready(function () {
-    var navbar = $("<div></div>");
-    navbar.html(`
+    var navbar = $(`
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -30,17 +29,17 @@ var navbarModule = (function () {
     var closeElement = "</a></li>";
 
     var names = [
-    "Home",
-    "P5JS",
-    "Phaser",
-    "Unity"
+        "Home",
+        "P5JS",
+        "Phaser",
+        "Unity"
     ];
 
     var urls = [
-    "/",
-    "/p5js/",
-    "/phaser/",
-    /unity/
+        "/",
+        "/p5js/",
+        "/phaser/",
+        /unity/
     ];
 
     function buildNavbarElement(name, url) {

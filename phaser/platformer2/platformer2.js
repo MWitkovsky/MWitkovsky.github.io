@@ -26,9 +26,9 @@ var jumpButton;
 
 function preload() {
     game.load.tilemap("tilemap", "level1.json", null, Phaser.Tilemap.TILED_JSON);
-    game.load.image("player", "/media/images/RiseOfTheChaosWizards/redmage.png");
-    game.load.image("tiles", "/media/images/tiles/troid_spritesheet16.gif");
-    game.load.image("enemy", "/media/images/RiseOfTheChaosWizards/blackmage.png");
+    game.load.image("player", "/static/media/images/RiseOfTheChaosWizards/redmage.png");
+    game.load.image("tiles", "/static/media/images/tiles/troid_spritesheet16.gif");
+    game.load.image("enemy", "/static/media/images/RiseOfTheChaosWizards/blackmage.png");
 }
 
 function initWorld() {

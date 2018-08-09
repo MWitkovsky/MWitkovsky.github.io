@@ -1,27 +1,46 @@
 <html>
 
 <head>
+    <link rel="stylesheet" href="/css/base.css">
     <link rel="stylesheet" href="/css/p5jscanvas.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.7/p5.min.js"></script>
-    <script src="AnimalCrossing.js"></script>
-    <script src="/static/lib/jquery.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-    <script src="/static/js/navbar_generator.js"></script>
-    <script src="GetVideo.js"></script>
     <title>Animal Crossing</title>
 </head>
 
 <body>
-    
+    <div class="container">
+        <div class="row text-center">
+            <div class="alert alert-warning">
+                Doesn't work in Chrome anymore LOL<br/>
+                <marquee>
+                    <img src="/static/media/images/logos/chrome.png" width="50px" class="chrome_logo c-mt-sm"/>
+                </marquee>
+            </div>
+            <div class="col-xs-12 c-mt-lg">
+                <a href="retrotv/">
+                    <img src="/static/media/images/AnimalCrossing/retrotv/retro1.png"
+                     class="retro_img"
+                     />
+                </a>
+            </div>
+        </div>
+    </div>
 
-    <a href="retrotv/" style="position: absolute;">
-        <img src="/media/images/AnimalCrossing/retrotv/retro1.png"
-         width=300px
-         />
-    </a>
+
+    <!-- YouTube video containing appropriate song -->
     <iframe id="video" width="0" height="0" src="" frameborder="0" allowfullscreen></iframe>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.7/p5.min.js"></script>
+    <script src="AnimalCrossing.js"></script>
+    <script src="/static/lib/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="/static/js/navbar_generator.js"></script>
+    <script src="/static/js/rotator.js"></script>
+    <script src="GetVideo.js"></script>
+    <script>
+        rotator.rotateElement($(".chrome_logo"), -2);
+    </script>
 </body>
 
 </html>

@@ -2,9 +2,44 @@ body {
     padding-top: 70px;
 }
 
+.c-mt-xxs {margin-top:3px}
+.c-mt-xs {margin-top:5px}
+.c-mt-sm {margin-top:10px}
+.c-mt-md {margin-top:20px}
+.c-mt-lg {margin-top:30px}
+.c-mr-xs {margin-right:5px}
+.c-mr-sm {margin-right:10px}
+.c-mr-md {margin-right:20px}
+.c-mr-lg {margin-right:30px}
+.c-ml-xs {margin-left:5px}
+.c-ml-sm {margin-left:10px}
+.c-ml-md {margin-left:20px}
+.c-ml-lg {margin-left:30px}
+.c-mb-zero {margin-bottom:0px !important}
+.c-mb-xs {margin-bottom:5px}
+.c-mb-sm {margin-bottom:10px}
+.c-mb-md {margin-bottom:20px}
+.c-mb-lg {margin-bottom:30px}
+.c-pt-xs {padding-top:5px !important}
+.c-pt-sm {padding-top:10px !important}
+.c-pt-md {padding-top:20px !important}
+.c-pt-lg {padding-top:30px !important}
+.c-pb-xs {padding-bottom:5px !important}
+.c-pb-sm {padding-bottom:10px !important}
+.c-pb-md {padding-bottom:20px !important}
+.c-pb-lg {padding-bottom:30px !important}
+.c-pr-xs {padding-right:5px !important}
+.c-pr-sm {padding-right:10px !important}
+.c-pr-md {padding-right:20px !important}
+.c-pr-lg {padding-right:30px !important}
+.c-pl-xs {padding-left:5px !important}
+.c-pl-sm {padding-left:10px !important}
+.c-pl-md {padding-left:20px !important}
+.c-pl-lg {padding-left:30px !important}
+
 .card{
     outline-style: solid;
-    outline-width: medium; 
+    outline-width: medium;
     margin:0 auto;
     width: 500px;
     height: 350px;

@@ -36,9 +36,9 @@ function checkForWebGL() {
 }
 
 function preload() {
-    sky = loadImage("/media/images/AnimalCrossing/sky.png");
-    grass = loadImage("/media/images/AnimalCrossing/grass.png");
-    tree = loadImage("/media/images/AnimalCrossing/Tree_GCN.png");
+    sky = loadImage("/static/media/images/AnimalCrossing/sky.png");
+    grass = loadImage("/static/media/images/AnimalCrossing/grass.png");
+    tree = loadImage("/static/media/images/AnimalCrossing/Tree_GCN.png");
 }
 
 function setup() {

@@ -12,10 +12,10 @@ var frameData;
 var framePixels;
 
 function preload() {
-    song = loadSound('/media/sound/RetroTV.wav');
-//    retro1 = loadImage("/media/images/AnimalCrossing/retrotv/retro1.png");
-//    retro2 = loadImage("/media/images/AnimalCrossing/retrotv/retro2.png");
-//    retro3 = loadImage("/media/images/AnimalCrossing/retrotv/retro3.png");
+    song = loadSound('/static/media/sound/RetroTV.wav');
+//    retro1 = loadImage("/static/media/images/AnimalCrossing/retrotv/retro1.png");
+//    retro2 = loadImage("/static/media/images/AnimalCrossing/retrotv/retro2.png");
+//    retro3 = loadImage("/static/media/images/AnimalCrossing/retrotv/retro3.png");
     retro1 = "1";
     retro2 = "2";
     retro3 = "3";

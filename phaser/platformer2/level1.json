@@ -20,7 +20,7 @@
         {
          "columns":128,
          "firstgid":1,
-         "image":"..\/..\/media\/images\/tiles\/troid_spritesheet16.gif",
+         "image":"..\/..\/static/media\/images\/tiles\/troid_spritesheet16.gif",
          "imageheight":1024,
          "imagewidth":2048,
          "margin":0,

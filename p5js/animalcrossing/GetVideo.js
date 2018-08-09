@@ -4,7 +4,7 @@ $(document).ready(function () {
 });
 
 var getVideoModule = (function () {
-    var autoplayArg = "?autoplay=1&loop=1&playlist=";
+    var autoplayArg = "?rel=0;&autoplay=1;&loop=1;";
     var baseUrl = "https://www.youtube.com/embed/"
     var urls = {
         0: "As6_i8RoKP0",
