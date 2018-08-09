@@ -13,15 +13,14 @@ var framePixels;
 
 function preload() {
     song = loadSound('/static/media/sound/RetroTV.wav');
-//    retro1 = loadImage("/static/media/images/AnimalCrossing/retrotv/retro1.png");
-//    retro2 = loadImage("/static/media/images/AnimalCrossing/retrotv/retro2.png");
-//    retro3 = loadImage("/static/media/images/AnimalCrossing/retrotv/retro3.png");
     retro1 = "1";
     retro2 = "2";
     retro3 = "3";
 }
 
 function setup() {
+    $("img").css("width", "100%");
+
     ww = $(window).width();
     wh = $(window).height() - 50;
 
@@ -35,14 +34,14 @@ function setup() {
     hs = 0.1;
 
     tileFactor = 10;
-    
+
     frameRate(9);
-    
+
     frameWidth = 32;
     frameHeight = 21;
     frameCounter = 0;
     frameData = [0, 0, 1, 0, 1, 0, 1, 2, 0];
-    
+
     createCanvas(ww, wh);
     song.loop();
 }
@@ -79,9 +78,7 @@ function renderTV() {
     ++frameCounter;
     if (frameCounter >= frameData.length)
         frameCounter = 0;
-    
-    $(".retro_img").each(function () {
-       $(this).hide(); 
-    });
+
+    $(".retro_img").hide();
     $("#"+frameDataToImage(frameData[frameCounter])).show();
 }
