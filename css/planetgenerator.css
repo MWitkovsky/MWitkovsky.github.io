@@ -1,0 +1,41 @@
+body {
+    background: black;
+    color: white;
+}
+
+.planet_container, .section {
+    border-radius: 10px;
+    border: 2px solid blue;
+}
+
+.planet_container {
+    padding: 15px;
+}
+
+.planet_info {
+    display: flex;
+    flex-flow: column;
+    min-height: 400px;
+}
+
+.planet_img {
+    width: 100%;
+    border: 2px solid blue;
+}
+
+.atmosphere_bars {
+    height: 150px;
+}
+
+.atmosphere_bar {
+    display: inline-block;
+    background: lightblue;
+    border: solid 1px blue;
+    height: calc(100% - 20px);
+    width: calc(25% - 23px);
+    margin: 10px;
+}
+
+.condition_desc {
+    height: 230px;
+}
